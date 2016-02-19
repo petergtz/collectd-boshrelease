@@ -20,8 +20,11 @@
 # https://github.com/logsearch/logsearch-boshrelease
 # -------------------------------------------------------------------
 
+exec 2>&1
+
 set -e # exit immediately if a simple command exits with a non-zero status
 set -u # report the usage of uninitialized variables
+set -x
 
 # Detect # of CPUs so make jobs can be parallelized
 CPUS=$(grep -c ^processor /proc/cpuinfo)
@@ -35,17 +38,49 @@ CPUS=$(grep -c ^processor /proc/cpuinfo)
 # see what plugins are available to them.
 CONFIGURE_LOG_LOCATION="${BOSH_INSTALL_TARGET}/collectd.configure.log"
 
-export LD_LIBRARY_PATH="/var/vcap/packages/python/lib"
-export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/var/vcap/packages/yajl/lib"
+cd ${BOSH_COMPILE_TARGET}
+PROTOBUF_VERSION=`ls -r protobuf/protobuf-*.tar.bz2 | sed 's/protobuf\/protobuf-\(.*\)\.tar\.bz2/\1/' | head -1`
+# Extract Protobuf package
+echo "Extracting Protobuf ${PROTOBUF_VERSION}..."
+tar xjvf ${BOSH_COMPILE_TARGET}/protobuf/protobuf-${PROTOBUF_VERSION}.tar.bz2
+if [[ $? != 0 ]] ; then
+  echo "Failed extracting Protobuf ${PROTOBUF_VERSION}"
+  exit 1
+fi
 
-tar xzf collectd/collectd-5.4.1.tar.gz
+# Build Protobuf package
+echo "Building Protobuf ${PROTOBUF_VERSION}..."
+cd ${BOSH_COMPILE_TARGET}/protobuf-${PROTOBUF_VERSION}
+./configure --prefix=${BOSH_INSTALL_TARGET}
+make -j${CPUS}
+make install
+export PATH=${BOSH_INSTALL_TARGET}/protobuf/bin:$PATH
+
+# Build Protobuf-c
+export PKG_CONFIG_PATH=${BOSH_INSTALL_TARGET}/lib/pkgconfig
+cd ${BOSH_COMPILE_TARGET}
+tar xvfz protobuf/protobuf-c-1.2.1.tar.gz
+cd protobuf-c-1.2.1
+./configure --prefix=${BOSH_INSTALL_TARGET}
+make -j${CPUS}
+make install
+
+
+export LD_LIBRARY_PATH="/var/vcap/packages/python/lib:/var/vcap/packages/yajl/lib"
+
+cd ${BOSH_COMPILE_TARGET}
+tar xvjf collectd/collectd-5.4.2.tar.bz2
 
 (
-  cd collectd-5.4.1
+  export PKG_CONFIG_PATH=${BOSH_INSTALL_TARGET}/lib/pkgconfig
+  export CPPFLAGS="-I${BOSH_INSTALL_TARGET}/include"
+  export LDFLAGS="-L${BOSH_INSTALL_TARGET}/lib/"
+  export PATH=${PATH}:${BOSH_INSTALL_TARGET}/bin
+  cd collectd-5.4.2
   ./configure --prefix=${BOSH_INSTALL_TARGET} \
+      --enable-write_riemann \
       --enable-python --with-python=/var/vcap/packages/python/bin/python \
-      --enable-curl-json --with-libyajl=/var/vcap/packages/yajl \
-      >> ${CONFIGURE_LOG_LOCATION}
+      --enable-curl-json --with-libyajl=/var/vcap/packages/yajl 
 
   make -j${CPUS} install
 )
