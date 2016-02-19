@@ -1,6 +1,7 @@
 # BOSH Release for collectd
 
-A super basic release for collectd
+A super basic release for collectd.  This fork renables the write_riemann plugin which
+is not enabled in the original release
 
 With basic config
 
