@@ -32,51 +32,71 @@ CPUS=$(grep -c ^processor /proc/cpuinfo)
 # Available variables
 # $BOSH_COMPILE_TARGET - where this package & spec'd source files are available
 # $BOSH_INSTALL_TARGET - where you copy/install files to be included in package
+# autoconf
+export PREFIX=${BOSH_INSTALL_TARGET}
+export PATH=$PREFIX/bin:$PATH
 
-# When we run ./configure it will let us know what plugins were built and which were enabled.
-# This information gets captured within the build artefacts so that anyone using the release can
-# see what plugins are available to them.
-CONFIGURE_LOG_LOCATION="${BOSH_INSTALL_TARGET}/collectd.configure.log"
+tar xzf autoconf-2.69.tar.gz
+(
+  set -e
+  cd autoconf-2.69
+  autoconf_dir=$PREFIX/share/autoconf ./configure --prefix=$PREFIX
+  make -j${CPUS}
+  make install prefix=$PREFIX
+)
 
-cd ${BOSH_COMPILE_TARGET}
+# automake
+tar xzf automake-1.15.tar.gz
+(
+  set -e
+  cd automake-1.15
+  ./configure --prefix=$PREFIX
+  make -j${CPUS}
+  make install prefix=$PREFIX
+)
+
+# libtool
+tar xzf libtool-2.4.6.tar.gz
+(
+  set -e
+  cd libtool-2.4.6
+  ./configure --prefix=$PREFIX
+  make -j${CPUS}
+  make install prefix=$PREFIX
+)
+
+# Protocol buffers
 PROTOBUF_VERSION=`ls -r protobuf/protobuf-*.tar.bz2 | sed 's/protobuf\/protobuf-\(.*\)\.tar\.bz2/\1/' | head -1`
-# Extract Protobuf package
-echo "Extracting Protobuf ${PROTOBUF_VERSION}..."
 tar xjvf ${BOSH_COMPILE_TARGET}/protobuf/protobuf-${PROTOBUF_VERSION}.tar.bz2
-if [[ $? != 0 ]] ; then
-  echo "Failed extracting Protobuf ${PROTOBUF_VERSION}"
-  exit 1
-fi
+(
+  set -e
+  cd protobuf-${PROTOBUF_VERSION}
+  ./configure --prefix=$PREFIX
+  make -j${CPUS}
+  make install
+  
+)
 
-# Build Protobuf package
-echo "Building Protobuf ${PROTOBUF_VERSION}..."
-cd ${BOSH_COMPILE_TARGET}/protobuf-${PROTOBUF_VERSION}
-./configure --prefix=${BOSH_INSTALL_TARGET}
-make -j${CPUS}
-make install
-export PATH=${BOSH_INSTALL_TARGET}/protobuf/bin:$PATH
-
-# Build Protobuf-c
+# Protobuf-c
 export PKG_CONFIG_PATH=${BOSH_INSTALL_TARGET}/lib/pkgconfig
-cd ${BOSH_COMPILE_TARGET}
 tar xvfz protobuf/protobuf-c-1.2.1.tar.gz
-cd protobuf-c-1.2.1
-./configure --prefix=${BOSH_INSTALL_TARGET}
-make -j${CPUS}
-make install
+(
+  set -e
+  cd protobuf-c-1.2.1
+  ./configure --prefix=$PREFIX
+  make -j${CPUS}
+  make install
+)
 
 
 export LD_LIBRARY_PATH="/var/vcap/packages/python/lib:/var/vcap/packages/yajl/lib"
-
-cd ${BOSH_COMPILE_TARGET}
-tar xvjf collectd/collectd-5.4.2.tar.bz2
-
+tar xvjf collectd/collectd-5.5.0.tar.bz2
 (
   export PKG_CONFIG_PATH=${BOSH_INSTALL_TARGET}/lib/pkgconfig
   export CPPFLAGS="-I${BOSH_INSTALL_TARGET}/include"
   export LDFLAGS="-L${BOSH_INSTALL_TARGET}/lib/"
   export PATH=${PATH}:${BOSH_INSTALL_TARGET}/bin
-  cd collectd-5.4.2
+  cd collectd-5.5.0
   ./configure --prefix=${BOSH_INSTALL_TARGET} \
       --enable-write_riemann \
       --enable-python --with-python=/var/vcap/packages/python/bin/python \
@@ -84,5 +104,3 @@ tar xvjf collectd/collectd-5.4.2.tar.bz2
 
   make -j${CPUS} install
 )
-
-mkdir -p $BOSH_INSTALL_TARGET/python

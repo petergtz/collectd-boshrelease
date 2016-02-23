@@ -28,11 +28,13 @@ Interval     <%= p("collectd.interval") %>
 Timeout      <%= p("collectd.timeout") %>
 ReadThreads  <%= p("collectd.read_threads") %>
 
-LoadPlugin "disk"
-LoadPlugin "cpu"
-LoadPlugin "load"
-LoadPlugin "memory"
-LoadPlugin "swap"
+LoadPlugin cpu
+LoadPlugin disk
+LoadPlugin load
+LoadPlugin memory
+LoadPlugin swap
+LoadPlugin interface
+
 
 ##############################################################################
 # Include                                                                    #
