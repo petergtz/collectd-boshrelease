@@ -11,3 +11,23 @@ collectd/collectd-5.4.1.tar.gz:
   object_id: 439834c8-5f41-41f0-9f18-c4e6ea15ba63
   sha: faaccac4daf48449bcefc9d6f9236f98a5dd5b4b
   size: 1894132
+autoconf-2.69.tar.gz:
+  object_id: 5a39963d-6cf3-4454-ade9-021728457c23
+  sha: 562471cbcb0dd0fa42a76665acf0dbb68479b78a
+  size: 1927468
+automake-1.15.tar.gz:
+  object_id: 6b1affc0-70bc-4479-959e-ee522fa1f38e
+  sha: b5a840c7ec4321e78fdc9472e476263fa6614ca1
+  size: 2244206
+libtool-2.4.6.tar.gz:
+  object_id: 8ac7d06e-e32c-4ecc-9227-c03dafadcadd
+  sha: 25b6931265230a06f0fc2146df64c04e5ae6ec33
+  size: 1806697
+protobuf-2.6.1.tar.bz2:
+  object_id: bd046835-08e2-401d-b955-e0bbc25ea909
+  sha: 6421ee86d8fb4e39f21f56991daa892a3e8d314b
+  size: 2021416
+protobuf-c-1.2.1.tar.gz:
+  object_id: ceb53b78-f7d7-4353-a842-80c251e623c9
+  sha: 8278571de14dcb51eacdf83e0c65b814fc45ae97
+  size: 458614

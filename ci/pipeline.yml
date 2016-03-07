@@ -3,6 +3,7 @@ jobs:
   plan:
   - aggregate:
     - get: release-git-repo
+      trigger: true
     - get: pipeline-tasks
     - get: final-builds-dir-tarball
     - get: releases-dir-tarball
