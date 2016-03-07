@@ -1,7 +1,9 @@
+ci/credentials.yml
 config/dev.yml
 config/private.yml
 config/settings.yml
 releases/*.tgz
+releases/collectd/*.tgz
 dev_releases
 blobs/*
 .blobs

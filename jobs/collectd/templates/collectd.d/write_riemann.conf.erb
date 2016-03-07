@@ -1,7 +1,7 @@
 LoadPlugin "write_riemann"
 <Plugin "write_riemann">
   <Node "riemann-prod">
-    Host <%= p("collectd.riemann_server") %>
+    Host "<%= p("collectd.riemann_server") %>"
     Port "5555"
     Protocol TCP
     CheckThresholds true
