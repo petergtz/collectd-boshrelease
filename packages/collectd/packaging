@@ -66,8 +66,8 @@ tar xzf libtool-2.4.6.tar.gz
 )
 
 # Protocol buffers
-PROTOBUF_VERSION=`ls -r protobuf/protobuf-*.tar.bz2 | sed 's/protobuf\/protobuf-\(.*\)\.tar\.bz2/\1/' | head -1`
-tar xjvf ${BOSH_COMPILE_TARGET}/protobuf/protobuf-${PROTOBUF_VERSION}.tar.bz2
+PROTOBUF_VERSION=`ls -r protobuf-*.tar.bz2 | sed 's/protobuf-\(.*\)\.tar\.bz2/\1/' | head -1`
+tar xjvf ${BOSH_COMPILE_TARGET}/protobuf-${PROTOBUF_VERSION}.tar.bz2
 (
   set -e
   cd protobuf-${PROTOBUF_VERSION}
@@ -79,7 +79,7 @@ tar xjvf ${BOSH_COMPILE_TARGET}/protobuf/protobuf-${PROTOBUF_VERSION}.tar.bz2
 
 # Protobuf-c
 export PKG_CONFIG_PATH=${BOSH_INSTALL_TARGET}/lib/pkgconfig
-tar xvfz protobuf/protobuf-c-1.2.1.tar.gz
+tar xvfz protobuf-c-1.2.1.tar.gz
 (
   set -e
   cd protobuf-c-1.2.1
@@ -90,7 +90,7 @@ tar xvfz protobuf/protobuf-c-1.2.1.tar.gz
 
 
 export LD_LIBRARY_PATH="/var/vcap/packages/python/lib:/var/vcap/packages/yajl/lib"
-tar xvjf collectd/collectd-5.5.0.tar.bz2
+tar xvjf collectd-5.5.0.tar.bz2
 (
   export PKG_CONFIG_PATH=${BOSH_INSTALL_TARGET}/lib/pkgconfig
   export CPPFLAGS="-I${BOSH_INSTALL_TARGET}/include"
