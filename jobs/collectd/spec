@@ -10,6 +10,7 @@ templates:
   collectd.d/df.conf: collectd.d/df.conf
   collectd.d/cpu.conf: collectd.d/cpu.conf
   collectd.d/swap.conf: collectd.d/swap.conf
+  collectd.d/tcpconns.conf: collectd.d/tcpconns.conf
   collectd.d/interface.conf: collectd.d/interface.conf
   collectd.d/config.conf.erb: collectd.d/config.conf
   data/properties.sh.erb: data/properties.sh
