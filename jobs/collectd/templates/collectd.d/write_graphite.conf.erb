@@ -1,0 +1,12 @@
+<% if !p("collectd.graphite_server").empty? %>
+LoadPlugin "write_graphite"
+<Plugin "write_graphite">
+  <Node "test">
+    EscapeCharacter "."
+    Host "<%= p("collectd.graphite_server") %>"
+    Port "2003"
+    SeparateInstances true
+    Protocol "tcp"
+  </Node>
+</Plugin>
+<% end %>

@@ -7,6 +7,7 @@ templates:
   bin/collectd_ctl: bin/collectd_ctl
   config/collectd.conf.erb: config/collectd.conf
   collectd.d/write_riemann.conf.erb: collectd.d/write_riemann.conf
+  collectd.d/write_graphite.conf.erb: collectd.d/write_graphite.conf
   collectd.d/df.conf: collectd.d/df.conf
   collectd.d/cpu.conf: collectd.d/cpu.conf
   collectd.d/swap.conf: collectd.d/swap.conf
@@ -37,6 +38,11 @@ properties:
   collectd.riemann_server:
     default: ""
     description: "Riemann server to send statistics to"
+
+  collectd.graphite_server:
+    default: ""
+    description: "Graphite server to send statistics to"
+
   collectd.config:
     default: ""
     description: "A multiline string containing the config you want"
