@@ -1,3 +1,4 @@
+<% if !p("collectd.riemann_server").empty? %>
 LoadPlugin "write_riemann"
 <Plugin "write_riemann">
   <Node "riemann-prod">
@@ -10,4 +11,4 @@ LoadPlugin "write_riemann"
   </Node>
   Tag "collectd"
 </Plugin>
-
+<% end %>
