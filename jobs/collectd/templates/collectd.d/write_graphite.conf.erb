@@ -2,7 +2,7 @@
 LoadPlugin "write_graphite"
 <Plugin "write_graphite">
   <Node "graphite">
-    EscapeCharacter "."
+    EscapeCharacter "_"
     Host "<%= p("collectd.graphite_server") %>"
     Port "2003"
     SeparateInstances true
