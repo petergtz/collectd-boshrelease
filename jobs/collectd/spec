@@ -43,6 +43,10 @@ properties:
     default: ""
     description: "Graphite server to send statistics to"
 
+  collectd.graphite_prefix:
+    default: ""
+    description: "Prefix will be added in front of the host name inside write_graphite plugin"
+
   collectd.config:
     default: ""
     description: "A multiline string containing the config you want"

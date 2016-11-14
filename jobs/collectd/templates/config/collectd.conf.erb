@@ -10,7 +10,7 @@
 # Global settings for the daemon.                                            #
 ##############################################################################
 
-Hostname    "<%= p("collectd.hostname_prefix") %><%= name.sub(/_z\d+$/, "") %>.<%= name %>_<%= index %>"
+Hostname    "<%= p("collectd.hostname_prefix") %><%= name %>.<%= index %>"
 FQDNLookup   true
 
 TypesDB     "/var/vcap/packages/collectd/share/collectd/types.db"
