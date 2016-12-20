@@ -4,6 +4,7 @@ LoadPlugin "write_graphite"
   <Node "graphite">
     EscapeCharacter "_"
     Prefix "<%= p("collectd.graphite_prefix") %><%= name.sub(/_z\d+$/, "") %>."
+    Postfix ".<%= index %>."
     Host "<%= p("collectd.graphite_server") %>"
     Port "2003"
     SeparateInstances true
