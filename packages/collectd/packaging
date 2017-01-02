@@ -100,7 +100,13 @@ tar xvjf collectd-5.5.0.tar.bz2
   ./configure --prefix=${BOSH_INSTALL_TARGET} \
       --enable-write_riemann \
       --enable-python --with-python=/var/vcap/packages/python/bin/python \
-      --enable-curl-json --with-libyajl=/var/vcap/packages/yajl 
+      --enable-curl-json --with-libyajl=/var/vcap/packages/yajl
 
   make -j${CPUS} install
 )
+
+mkdir -p ${BOSH_INSTALL_TARGET}/lib/collectd
+wget https://downloads.opvis.bluemix.net/deb/public/pool/main/c/collectd-write-mtlumberjack/collectd-write-mtlumberjack_0.3.7.20161104202833_amd64.deb
+dpkg -x collectd-write-mtlumberjack_0.3.7.20161104202833_amd64.deb .
+cp usr/lib/collectd/write_metric_mtlumberjack_64.so ${BOSH_INSTALL_TARGET}/lib/collectd/write_metric_mtlumberjack.so
+chmod 755 ${BOSH_INSTALL_TARGET}/lib/collectd/write_metric_mtlumberjack.so
