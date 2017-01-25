@@ -90,17 +90,14 @@ tar xvfz protobuf-c-1.2.1.tar.gz
 
 
 export LD_LIBRARY_PATH="/var/vcap/packages/python/lib:/var/vcap/packages/yajl/lib"
-tar xvjf collectd-5.5.0.tar.bz2
+tar xvjf collectd-5.7.1.tar.bz2
 (
   export PKG_CONFIG_PATH=${BOSH_INSTALL_TARGET}/lib/pkgconfig
   export CPPFLAGS="-I${BOSH_INSTALL_TARGET}/include"
   export LDFLAGS="-L${BOSH_INSTALL_TARGET}/lib/"
   export PATH=${PATH}:${BOSH_INSTALL_TARGET}/bin
-  cd collectd-5.5.0
-  ./configure --prefix=${BOSH_INSTALL_TARGET} \
-      --enable-write_riemann \
-      --enable-python --with-python=/var/vcap/packages/python/bin/python \
-      --enable-curl-json --with-libyajl=/var/vcap/packages/yajl
+  cd collectd-5.7.1
+  ./configure --prefix=${BOSH_INSTALL_TARGET}
 
   make -j${CPUS} install
 )
