@@ -10,7 +10,8 @@
 # Global settings for the daemon.                                            #
 ##############################################################################
 
-Hostname    "<%= p("collectd.hostname_prefix") %><%= spec.dns_domain_name %>.<%= spec.deployment %>.<%= name %>.<%= index %>"
+# We don't make use of the hostname
+# Hostname     ""
 FQDNLookup   false
 
 TypesDB     "/var/vcap/packages/collectd/share/collectd/types.db"
