@@ -14,6 +14,10 @@ libtool-2.4.6.tar.gz:
   size: 1806697
   object_id: d452815a-95a7-4c2e-6231-8dce4cf2e7c9
   sha: 25b6931265230a06f0fc2146df64c04e5ae6ec33
+protobuf-2.6.1.tar.bz2:
+  size: 2021416
+  object_id: b16adeeb-a204-453d-46c8-c15337c66024
+  sha: 6421ee86d8fb4e39f21f56991daa892a3e8d314b
 protobuf-c-1.2.1.tar.gz:
   size: 458614
   object_id: 8b061885-3d70-4f3e-4f7e-179c027754b2
