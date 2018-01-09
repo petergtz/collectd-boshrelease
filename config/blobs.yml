@@ -22,10 +22,6 @@ python/Python-2.7.8.tgz:
   size: 14846119
   object_id: 71fc2d10-95a5-4a2d-4885-ff48eec9092f
   sha: 511960dd78451a06c9df76509635aeec05b2051a
-python/python-2.7.8.tgz:
-  size: 14846119
-  object_id: 4508a565-df6e-4567-745a-7be05b51502e
-  sha: 511960dd78451a06c9df76509635aeec05b2051a
 yajl/yajl-2.1.0.tar.gz:
   size: 83997
   object_id: 21880ad2-a90e-4f08-5eef-1d21218b9f44
