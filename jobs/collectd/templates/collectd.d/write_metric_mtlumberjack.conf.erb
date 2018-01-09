@@ -6,7 +6,7 @@ LoadPlugin memory
 LoadPlugin write_metric_mtlumberjack
 <Plugin write_metric_mtlumberjack>
    <Logstash>
-       Host "metrics.opvis.bluemix.net"
+       Host "metrics.ng.bluemix.net"
        Port "9095"
        GraphitePrefix "<%= p("collectd.space_id") %>.<%= spec.dns_domain_name %>.<%= spec.deployment %>.<%= name %>.<%= index %>."
        SpaceId "<%= p("collectd.space_id") %>"
