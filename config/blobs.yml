@@ -1,33 +1,28 @@
----
 autoconf-2.69.tar.gz:
-  object_id: 5a39963d-6cf3-4454-ade9-021728457c23
-  sha: 562471cbcb0dd0fa42a76665acf0dbb68479b78a
   size: 1927468
+  object_id: 46743340-42bc-49b3-4fe1-8813033e90d3
+  sha: 562471cbcb0dd0fa42a76665acf0dbb68479b78a
 automake-1.15.tar.gz:
-  object_id: 6b1affc0-70bc-4479-959e-ee522fa1f38e
-  sha: b5a840c7ec4321e78fdc9472e476263fa6614ca1
   size: 2244206
-libtool-2.4.6.tar.gz:
-  object_id: 8ac7d06e-e32c-4ecc-9227-c03dafadcadd
-  sha: 25b6931265230a06f0fc2146df64c04e5ae6ec33
-  size: 1806697
-protobuf-2.6.1.tar.bz2:
-  object_id: bd046835-08e2-401d-b955-e0bbc25ea909
-  sha: 6421ee86d8fb4e39f21f56991daa892a3e8d314b
-  size: 2021416
-protobuf-c-1.2.1.tar.gz:
-  object_id: ceb53b78-f7d7-4353-a842-80c251e623c9
-  sha: 8278571de14dcb51eacdf83e0c65b814fc45ae97
-  size: 458614
+  object_id: 9c0bc57e-dd1b-49bd-6e6d-48abd05d1e84
+  sha: b5a840c7ec4321e78fdc9472e476263fa6614ca1
 collectd-5.5.0.tar.bz2:
-  object_id: d03a6a49-4687-4a8c-8444-1ceb3d251521
-  sha: ef97838e249814ad96a2edc0410326efbb4f3d08
   size: 1824495
-python/Python-2.7.8.tgz:
-  object_id: 97e5cfd7-9b7a-4cdd-8fa3-6e7ff5264e1c
-  sha: 511960dd78451a06c9df76509635aeec05b2051a
+  object_id: 545226e8-164f-4a9b-7e68-eec6ba801119
+  sha: ef97838e249814ad96a2edc0410326efbb4f3d08
+libtool-2.4.6.tar.gz:
+  size: 1806697
+  object_id: d452815a-95a7-4c2e-6231-8dce4cf2e7c9
+  sha: 25b6931265230a06f0fc2146df64c04e5ae6ec33
+protobuf-c-1.2.1.tar.gz:
+  size: 458614
+  object_id: 8b061885-3d70-4f3e-4f7e-179c027754b2
+  sha: 8278571de14dcb51eacdf83e0c65b814fc45ae97
+python/python-2.7.8.tgz:
   size: 14846119
+  object_id: 4508a565-df6e-4567-745a-7be05b51502e
+  sha: 511960dd78451a06c9df76509635aeec05b2051a
 yajl/yajl-2.1.0.tar.gz:
-  object_id: 2b272c7d-83c8-4aa6-9150-228f662a75e1
-  sha: 29ce2b9695ae93e1b0b349a22cea8067f25a9025
   size: 83997
+  object_id: 21880ad2-a90e-4f08-5eef-1d21218b9f44
+  sha: 29ce2b9695ae93e1b0b349a22cea8067f25a9025
