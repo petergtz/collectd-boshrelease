@@ -113,5 +113,5 @@ chmod 755 ${BOSH_INSTALL_TARGET}/lib/collectd/write_metric_mtlumberjack.so
 
 wget https://downloads.opvis.bluemix.net/deb/public/pool/main/i/ibmcloud-monitoring/ibmcloud-monitoring_1.0.3.20171012171650_amd64.deb
 dpkg -x ibmcloud-monitoring_1.0.3.20171012171650_amd64.deb .
-cp /usr/lib/collectd/IBMCloudMonitoring_64.so ${BOSH_INSTALL_TARGET}/lib/collectd/IBMCloudMonitoring.so
+cp usr/lib/collectd/IBMCloudMonitoring_64.so ${BOSH_INSTALL_TARGET}/lib/collectd/IBMCloudMonitoring.so
 chmod 755 ${BOSH_INSTALL_TARGET}/lib/collectd/IBMCloudMonitoring.so
