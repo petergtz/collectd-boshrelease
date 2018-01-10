@@ -1,0 +1,32 @@
+LoadPlugin df
+LoadPlugin disk
+LoadPlugin cpu
+LoadPlugin load
+LoadPlugin memory
+
+<LoadPlugin IBMCloudMonitoring>
+   FlushInterval 60
+</LoadPlugin>
+<Plugin IBMCloudMonitoring>
+  <Endpoint "ng">
+     Host "metrics.ng.bluemix.net"
+     Port 9095
+     ApiKey "<%= p("collectd.api_key") %>"
+     SkipInternalPrefixForStatsd false
+     RateCounter false
+     ScopeId "s-<%= p("collectd.space_id") %>"
+     Prefix "<%= p("collectd.space_id") %>.<%= spec.dns_domain_name %>.<%= spec.deployment %>.<%= name %>.<%= index %>."
+  </Endpoint>
+</Plugin>
+LoadPlugin statsd
+<Plugin statsd>
+  Host "127.0.0.1"
+  DeleteCounters true
+  DeleteTimers true
+  DeleteGauges true
+  DeleteSets true
+  TimerPercentile 99.0
+  TimerPercentile 95.0
+  TimerPercentile 90.0
+  TimerCount true
+</Plugin>

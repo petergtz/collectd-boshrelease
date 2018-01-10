@@ -8,7 +8,7 @@ templates:
   config/collectd.conf.erb: config/collectd.conf
   collectd.d/write_riemann.conf.erb: collectd.d/write_riemann.conf
   collectd.d/write_graphite.conf.erb: collectd.d/write_graphite.conf
-  collectd.d/write_metric_mtlumberjack.conf.erb: collectd.d/write_metric_mtlumberjack.conf
+  collectd.d/ibmcloud-monitoring.conf.erb: collectd.d/ibmcloud-monitoring.conf
   collectd.d/df.conf: collectd.d/df.conf
   collectd.d/cpu.conf: collectd.d/cpu.conf
   collectd.d/swap.conf: collectd.d/swap.conf
@@ -56,4 +56,7 @@ properties:
     description: "The space ID to access Bluemix Logmet"
 
   collectd.logging_token:
-    description: "The logging token to access Bluemix Logmet"
+    description: "NOT USED CURRENTLY. The logging token to access Bluemix Logmet"
+
+  collectd.api_key:
+    description: "The API Key access Bluemix Logmet"
