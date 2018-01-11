@@ -15,7 +15,11 @@ LoadPlugin memory
      SkipInternalPrefixForStatsd false
      RateCounter false
      ScopeId "s-<%= p("collectd.space_id") %>"
-     Prefix "<%= spec.dns_domain_name %>.<%= spec.deployment %>.<%= name %>.<%= index %>."
+    <% if p("system_domain") != "" && p("system_domain") != nil %>
+    Prefix "<%= spec.dns_domain_name %>.<%= p("system_domain").gsub('.','-') %>.<%= spec.deployment %>.<%= name %>.<%= index %>."
+    <% else %>
+    Prefix "<%= spec.dns_domain_name %>.default.<%= spec.deployment %>.<%= name %>.<%= index %>."
+    <% end %>
   </Endpoint>
 </Plugin>
 LoadPlugin statsd
