@@ -21,10 +21,13 @@ LoadPlugin memory
 LoadPlugin statsd
 <Plugin statsd>
   Host "127.0.0.1"
-  DeleteCounters true
-  DeleteTimers true
-  DeleteGauges true
-  DeleteSets true
+  # Actually, we want to set these values to false to make this real counters (i.e. fill a bucket within a time window,
+  # then get reset to zero again). However, it seems currently it doesn't work with IBM Metrics Service.
+  # We can try this again when we have more metrics. Maybe it was a problem with too few metrics.
+  DeleteCounters false
+  DeleteTimers false
+  DeleteGauges false
+  DeleteSets false
   TimerPercentile 99.0
   TimerPercentile 95.0
   TimerPercentile 90.0
