@@ -60,3 +60,7 @@ properties:
 
   collectd.api_key:
     description: "The API Key access Bluemix Logmet"
+
+  env:
+    description: "Used in the prefix of metrics for further discrimination of different environments."
+    default: unknown
